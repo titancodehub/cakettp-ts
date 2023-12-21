@@ -1,0 +1,24 @@
+{
+  "name": "cakettp",
+  "module": "index.ts",
+  "type": "module",
+  "devDependencies": {
+    "bun-types": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "@types/cli-color": "^2.0.6",
+    "@types/highlightjs": "^9.12.6",
+    "@types/prismjs": "^1.26.3",
+    "axios": "^1.6.2",
+    "cli-color": "^2.0.3",
+    "cli-highlight": "^2.1.11",
+    "colors-cli": "^1.0.33",
+    "commander": "^11.1.0",
+    "highlightjs": "^9.16.2",
+    "htmlout": "^0.2.0",
+    "prismjs": "^1.29.0"
+  }
+}

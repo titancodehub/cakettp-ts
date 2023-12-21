@@ -1,0 +1,16 @@
+POST https://dummyjson.com/http/400
+Content-Type: application/*
+Other-Header: application/*
+Other-Header-1: application/*
+
+{
+  "sample": "body",
+  "sample2": "body2"
+}
+###
+GET https://dummyjson.com/userssss
+Content-Type: application/*
+
+###
+GET https://dummyjson.com/usersssss
+Content-Type: application/a
