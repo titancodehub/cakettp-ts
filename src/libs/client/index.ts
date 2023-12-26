@@ -8,6 +8,7 @@ export interface ClientResponse {
   body: string;
   headers: Map<string, string>;
   duration: number;
+  request: RequestBlock;
 }
 
 export class Client {
@@ -35,6 +36,7 @@ export class Client {
         body: res.data,
         duration: endTime.getTime() - startTime.getTime(),
         headers,
+        request,
       }
     } catch (e) {
       const endTime = new Date();
@@ -49,7 +51,8 @@ export class Client {
           status: e.response?.status!,
           body: e.response?.data!,
           duration: endTime.getTime() - startTime.getTime(),
-          headers
+          headers,
+          request,
         } as ClientResponse;
       }
 

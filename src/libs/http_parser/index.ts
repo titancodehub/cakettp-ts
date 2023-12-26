@@ -1,5 +1,5 @@
 import fs from 'fs';
-import { HistoryLine, isBodyLine, isEndOfRequestBlock, isHeaderLine, isUrlLine } from './helper';
+import { HistoryLine, isBodyLine, isEndOfRequestBlock, isHeaderLine, isRequestNameLine, isUrlLine } from './helper';
 import { RequestBlock } from './interface';
 
 export class HttpParser {
@@ -12,6 +12,7 @@ export class HttpParser {
     let requestBlock: RequestBlock = {
       method: '',
       url: '',
+      name: '',
       headers: new Map(),
       body: '',
     };
@@ -19,7 +20,12 @@ export class HttpParser {
     for (const [lineNumber, line] of splitLines.entries()) {
       const sanitizedLine = line.trim();
 
-      if (sanitizedLine === '') { 
+      if(isRequestNameLine(sanitizedLine)) {
+        const substr = sanitizedLine.split(' @name ');
+        requestBlock.name = substr[1];
+        history.push(HistoryLine.REQUEST_NAME);
+        
+      } else if (sanitizedLine === '') { 
         history.push(HistoryLine.EMPTY_LINE);
       } else if (isUrlLine(sanitizedLine)) {
         const substr = sanitizedLine.split(' ');
@@ -40,6 +46,7 @@ export class HttpParser {
       if (isEndOfRequestBlock(sanitizedLine) || lineNumber === splitLines.length - 1) {
         requests.push(requestBlock);
         requestBlock = {
+          name: '',
           method: '',
           url: '',
           headers: new Map(),

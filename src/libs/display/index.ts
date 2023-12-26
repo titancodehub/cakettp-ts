@@ -4,6 +4,9 @@ import { highlight } from 'cli-highlight';
 
 export class ClientResponseDisplay {
   show(res: ClientResponse) {
+    this.newLine();
+    this.printRequestName(res.request.name);
+    this.newLine();
     console.log(`${this.printMethod(res.reqMethod)} ${color.cyan(res.reqUrl)}`);
     console.log(`${color.bold.yellow('Status')} ${color.white(`${res.status}`)}`);
     console.log(`${color.bold.yellow('Latency')} ${color.white(`${res.duration}ms`)}`);
@@ -15,6 +18,12 @@ export class ClientResponseDisplay {
 
   newLine() {
     console.log('')
+  }
+
+  printRequestName(name: string) {
+    if(name !=='' && name !== undefined) {
+      console.log(color.bold.yellow(`${name}`));
+    }
   }
 
   printHeader(header: Map<string, string>) {

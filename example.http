@@ -1,4 +1,5 @@
-POST https://dummyjson.com/http/400
+// @name request_1
+POST https://dummyjson.com/http/404
 Content-Type: application/*
 Other-Header: application/*
 Other-Header-1: application/*
@@ -7,10 +8,8 @@ Other-Header-1: application/*
   "sample": "body",
   "sample2": "body2"
 }
-###
+
+### Second
+// @name request_2
 GET https://dummyjson.com/userssss
 Content-Type: application/*
-
-###
-GET https://dummyjson.com/usersssss
-Content-Type: application/a

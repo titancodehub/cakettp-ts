@@ -1,9 +1,10 @@
-import { END_BLOCK, HTTP_METHOD } from "./regex";
+import { END_BLOCK, HTTP_METHOD, REQUEST_NAME_BLOCK } from "./regex";
 export enum HistoryLine {
   URL_METHOD = 'URL_METHOD',
   HEADER = 'HEADER',
   BODY = 'BODY',
   EMPTY_LINE = 'EMPTY_LINE',
+  REQUEST_NAME = 'REQUEST_NAME',
 }
 
 function getLastElement<T>(arr: T[]): T | undefined {
@@ -30,5 +31,11 @@ export function isBodyLine(historyLine: HistoryLine[], line: string) : boolean {
 }
 
 export function isEndOfRequestBlock(line: string) : boolean {
-  return line === END_BLOCK;
+  const re = new RegExp(END_BLOCK);
+  return re.test(line);
+}
+
+export function isRequestNameLine(line: string): boolean {
+  const re = new RegExp(REQUEST_NAME_BLOCK);
+  return re.test(line);
 }
