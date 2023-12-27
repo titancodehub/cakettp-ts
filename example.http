@@ -9,7 +9,8 @@ Other-Header-1: application/*
   "sample2": "body2"
 }
 
-### Second
-// @name request_2
-GET https://dummyjson.com/userssss
-Content-Type: application/*
+// @test start request_1
+// @test desc This request should return 404
+expect body.status equal 404
+expect body.title equal Not Found
+// @test end
