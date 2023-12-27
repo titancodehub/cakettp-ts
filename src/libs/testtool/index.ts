@@ -106,7 +106,7 @@ export class Test {
       for (const e of this.expect) {
         const result = e.evaluate();
         if (result) {
-          pass.push(color.greenBright(`${e.actualField} \n\texpect:\t (${e.comparator}) ${e.expect}, \n\tgot:\t ${e.actualValue}`));
+          pass.push(color.greenBright(`${e.actualField} (${e.comparator}) ${e.expect}`));
         } else {
           diff.push(color.redBright(`${e.actualField} \n\texpect:\t (${e.comparator}) ${e.expect}, \n\tgot:\t ${e.actualValue}`));
         }

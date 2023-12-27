@@ -13,4 +13,17 @@ Other-Header-1: application/*
 // @test desc This request should return 404
 expect body.status equal 404
 expect body.title equal Not Found
+expect header.server equal railway
+expect header.x-ratelimit-limit > 120
 // @test end
+
+### request_2
+POST https://dummyjson.com/http/404
+Content-Type: application/*
+Other-Header: application/*
+Other-Header-1: application/*
+
+{
+  "sample": "body",
+  "sample2": "body2"
+}
